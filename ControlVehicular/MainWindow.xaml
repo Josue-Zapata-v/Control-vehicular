@@ -31,28 +31,52 @@
             </MenuItem>
         </Menu>
         <Grid Margin="20">
-            <Grid>
-                <Grid.Style><Style TargetType="Grid"><Setter Property="Visibility" Value="Collapsed"/><Style.Triggers><DataTrigger Binding="{Binding SeccionActual}" Value="Ingresos"><Setter Property="Visibility" Value="Visible"/></DataTrigger></Style.Triggers></Style></Grid.Style>
-                <Grid.ColumnDefinitions><ColumnDefinition Width="390"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
-                <Border Background="White" BorderBrush="{StaticResource Borde}" BorderThickness="1" CornerRadius="8" Padding="20" Margin="0,0,16,0">
-                    <ScrollViewer><StackPanel>
-                        <TextBlock Text="Registro de ingresos" FontSize="21" FontWeight="Bold" Margin="0,0,0,16"/>
-                        <Label Content="Tipo de documento"/><ComboBox ItemsSource="{Binding TiposDocumento}" SelectedItem="{Binding TipoDocumento}"/>
-                        <Label Content="Número de documento *"/><TextBox Text="{Binding NumeroDocumento}"/>
-                        <Label Content="Placa *"/><TextBox Text="{Binding Placa}"/>
-                        <Label Content="Turno"/><ComboBox ItemsSource="{Binding Turnos}" SelectedItem="{Binding Turno}"/>
-                        <Label Content="Nombre del conductor *"/><TextBox Text="{Binding NombreConductor}"/>
-                        <Label Content="Nombre del cliente *"/><TextBox Text="{Binding NombreCliente}"/>
-                        <Label Content="Producto"/><TextBox Text="{Binding Producto}"/>
-                        <Label Content="Fecha y hora"/><TextBlock Text="{Binding FechaHora, StringFormat={}{0:dd/MM/yyyy HH:mm}}" Margin="0,2,0,12"/>
-                        <Label Content="Peso de ingreso (kg) *"/><TextBox Text="{Binding PesoIngreso}"/>
-                        <Button Content="Registrar ingreso" Command="{Binding RegistrarIngresoCommand}"/>
-                    </StackPanel></ScrollViewer>
-                </Border>
-                <Border Grid.Column="1" Background="White" BorderBrush="{StaticResource Borde}" BorderThickness="1" CornerRadius="8" Padding="22">
-                    <StackPanel VerticalAlignment="Center"><TextBlock Text="Operaciones de ingreso" FontSize="25" FontWeight="Bold" Foreground="{StaticResource Primario}"/><TextBlock Text="Registra la llegada del vehículo y sus datos de carga." Margin="0,10,0,0" FontSize="15" Foreground="#667085"/></StackPanel>
-                </Border>
-            </Grid>
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <Grid>
+                    <Grid.Style><Style TargetType="Grid"><Setter Property="Visibility" Value="Collapsed"/><Style.Triggers><DataTrigger Binding="{Binding SeccionActual}" Value="Ingresos"><Setter Property="Visibility" Value="Visible"/></DataTrigger></Style.Triggers></Style></Grid.Style>
+                    <StackPanel MaxWidth="1050" HorizontalAlignment="Center">
+                        <TextBlock Text="Operaciones / Ingresos" Foreground="{StaticResource Primario}" FontWeight="SemiBold" FontSize="13"/>
+                        <TextBlock Text="Registro de ingreso vehicular" FontSize="27" FontWeight="Bold" Margin="0,4,0,3"/>
+                        <TextBlock Text="Complete los datos del vehículo y la carga al momento de su llegada." Foreground="#667085" Margin="0,0,0,22"/>
+
+                        <Border Background="White" BorderBrush="{StaticResource Borde}" BorderThickness="1" CornerRadius="10" Padding="26">
+                            <StackPanel>
+                                <TextBlock Text="Documento y vehículo" FontWeight="SemiBold" FontSize="17" Foreground="{StaticResource Primario}" Margin="0,0,0,14"/>
+                                <Grid Margin="0,0,0,20">
+                                    <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="*"/><ColumnDefinition Width="*"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+                                    <Label Grid.Column="0" Content="Tipo de documento"/><Label Grid.Column="1" Content="Número de documento *"/><Label Grid.Column="2" Content="Placa *"/><Label Grid.Column="3" Content="Turno"/>
+                                    <ComboBox Grid.Row="1" Grid.Column="0" Margin="0,0,12,0" ItemsSource="{Binding TiposDocumento}" SelectedItem="{Binding TipoDocumento}"/>
+                                    <TextBox Grid.Row="1" Grid.Column="1" Margin="0,0,12,0" Text="{Binding NumeroDocumento}"/>
+                                    <TextBox Grid.Row="1" Grid.Column="2" Margin="0,0,12,0" Text="{Binding Placa}"/>
+                                    <ComboBox Grid.Row="1" Grid.Column="3" ItemsSource="{Binding Turnos}" SelectedItem="{Binding Turno}"/>
+                                </Grid>
+
+                                <Separator Margin="0,0,0,18"/>
+                                <TextBlock Text="Personas y carga" FontWeight="SemiBold" FontSize="17" Foreground="{StaticResource Primario}" Margin="0,0,0,14"/>
+                                <Grid Margin="0,0,0,20">
+                                    <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="*"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+                                    <Label Grid.Column="0" Content="Nombre del conductor *"/><Label Grid.Column="1" Content="Nombre del cliente *"/><Label Grid.Column="2" Content="Producto"/>
+                                    <TextBox Grid.Row="1" Grid.Column="0" Margin="0,0,12,0" Text="{Binding NombreConductor}"/>
+                                    <TextBox Grid.Row="1" Grid.Column="1" Margin="0,0,12,0" Text="{Binding NombreCliente}"/>
+                                    <TextBox Grid.Row="1" Grid.Column="2" Text="{Binding Producto}"/>
+                                </Grid>
+
+                                <Grid Margin="0,0,0,4">
+                                    <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="*"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+                                    <Label Grid.Column="0" Content="Fecha y hora"/><Label Grid.Column="1" Content="Peso de ingreso (kg) *"/>
+                                    <Border Grid.Row="1" Grid.Column="0" Background="#F8FAFC" BorderBrush="{StaticResource Borde}" BorderThickness="1" CornerRadius="4" Padding="9,7" Margin="0,0,12,0"><TextBlock Text="{Binding FechaHora, StringFormat={}{0:dd/MM/yyyy HH:mm}}"/></Border>
+                                    <TextBox Grid.Row="1" Grid.Column="1" Margin="0,0,12,0" Text="{Binding PesoIngreso}"/>
+                                    <Button Grid.Row="1" Grid.Column="2" Content="Registrar ingreso" Command="{Binding RegistrarIngresoCommand}" Margin="0" MinHeight="35" VerticalAlignment="Top"/>
+                                </Grid>
+                            </StackPanel>
+                        </Border>
+                        <TextBlock Text="Los campos con * son obligatorios." Foreground="#667085" FontSize="12" Margin="4,12,0,0"/>
+                    </StackPanel>
+                </Grid>
+            </ScrollViewer>
             <Grid>
                 <Grid.Style><Style TargetType="Grid"><Setter Property="Visibility" Value="Collapsed"/><Style.Triggers><DataTrigger Binding="{Binding SeccionActual}" Value="Conductores"><Setter Property="Visibility" Value="Visible"/></DataTrigger></Style.Triggers></Style></Grid.Style>
                 <Grid.ColumnDefinitions><ColumnDefinition Width="350"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
