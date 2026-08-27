@@ -2,21 +2,21 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="clr-namespace:ControlVehicular.ViewModels"
-        Title="Control Vehicular - Inicio de sesión" Height="500" Width="500"
+        Title="Control Vehicular - Inicio de sesión" Height="500" Width="500" MinHeight="480" MinWidth="480"
         WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Background="{StaticResource Fondo}">
     <Window.DataContext><vm:LoginViewModel/></Window.DataContext>
-    <Grid Margin="55,28">
-        <Border Background="{StaticResource Superficie}" BorderBrush="{StaticResource Borde}" BorderThickness="1" CornerRadius="10" Padding="30">
+    <Grid Margin="56,34">
+        <Border Style="{StaticResource ContentCard}" Padding="30">
             <StackPanel>
-                <TextBlock Text="Control Vehicular" FontSize="27" FontWeight="Bold" Foreground="{StaticResource Primario}"/>
-                <TextBlock Text="Inicia sesión para gestionar operaciones y reportes." Foreground="#667085" Margin="0,8,0,24"/>
+                <TextBlock Text="Control Vehicular" Style="{StaticResource PageTitle}" Foreground="{StaticResource Primario}"/>
+                <TextBlock Text="Inicia sesión para gestionar operaciones y reportes." Foreground="#667085" Margin="0,4,0,24"/>
                 <Label Content="Usuario"/>
                 <TextBox Text="{Binding Usuario, UpdateSourceTrigger=PropertyChanged}"/>
                 <Label Content="Contraseña"/>
-                <PasswordBox x:Name="PasswordInput" Padding="8,6" Margin="0,0,0,8"/>
+                <PasswordBox x:Name="PasswordInput" Padding="9,7" MinHeight="34" Margin="0,0,0,10"/>
                 <TextBlock Text="{Binding Mensaje}" Foreground="#B42318" MinHeight="22" TextWrapping="Wrap"/>
                 <Button Content="Iniciar sesión" Click="IniciarSesion_Click" Margin="0,12,0,0"/>
-                <TextBlock Text="Credenciales de demostración: admin / 123456" HorizontalAlignment="Center" FontSize="11" Foreground="#667085" Margin="0,14,0,0"/>
+                <TextBlock Text="Credenciales de demostración: admin / 123456" HorizontalAlignment="Center" FontSize="11" Foreground="#667085" Margin="0,16,0,0"/>
             </StackPanel>
         </Border>
     </Grid>

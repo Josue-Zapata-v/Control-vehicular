@@ -5,13 +5,25 @@
     <SolidColorBrush x:Key="Superficie" Color="White"/>
     <SolidColorBrush x:Key="Borde" Color="#D6DFEB"/>
     <SolidColorBrush x:Key="Texto" Color="#1D2939"/>
-    <!-- El texto hereda el color del control que lo contiene: blanco en botones y encabezados azules. -->
+
+    <!-- Fundamentos visuales compartidos -->
     <Style TargetType="Window"><Setter Property="Foreground" Value="{StaticResource Texto}"/></Style>
-    <Style TargetType="Label"><Setter Property="Foreground" Value="#475467"/><Setter Property="FontSize" Value="12"/><Setter Property="Padding" Value="0,3"/></Style>
-    <Style TargetType="TextBox"><Setter Property="Padding" Value="8,6"/><Setter Property="Margin" Value="0,0,0,8"/><Setter Property="BorderBrush" Value="{StaticResource Borde}"/></Style>
-    <Style TargetType="ComboBox"><Setter Property="Padding" Value="8,5"/><Setter Property="Margin" Value="0,0,0,8"/></Style>
-    <Style TargetType="DatePicker"><Setter Property="Margin" Value="0,0,0,8"/></Style>
-    <Style TargetType="Button"><Setter Property="Background" Value="{StaticResource Primario}"/><Setter Property="Foreground" Value="White"/><Setter Property="BorderThickness" Value="0"/><Setter Property="Padding" Value="13,8"/><Setter Property="Margin" Value="0,4"/><Setter Property="Cursor" Value="Hand"/></Style>
-    <Style TargetType="DataGrid"><Setter Property="AutoGenerateColumns" Value="False"/><Setter Property="IsReadOnly" Value="True"/><Setter Property="CanUserAddRows" Value="False"/><Setter Property="RowHeight" Value="31"/><Setter Property="AlternatingRowBackground" Value="#F8FAFC"/></Style>
-    <Style TargetType="DataGridColumnHeader"><Setter Property="Background" Value="{StaticResource Primario}"/><Setter Property="Foreground" Value="White"/><Setter Property="Padding" Value="8"/></Style>
+    <Style x:Key="ContentCard" TargetType="Border">
+        <Setter Property="Background" Value="{StaticResource Superficie}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource Borde}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="CornerRadius" Value="10"/>
+        <Setter Property="Padding" Value="22"/>
+    </Style>
+    <Style x:Key="PageTitle" TargetType="TextBlock"><Setter Property="FontSize" Value="26"/><Setter Property="FontWeight" Value="Bold"/><Setter Property="Margin" Value="0,4,0,4"/></Style>
+    <Style x:Key="SectionTitle" TargetType="TextBlock"><Setter Property="FontSize" Value="17"/><Setter Property="FontWeight" Value="SemiBold"/><Setter Property="Foreground" Value="{StaticResource Primario}"/><Setter Property="Margin" Value="0,0,0,14"/></Style>
+    <Style TargetType="Label"><Setter Property="Foreground" Value="#475467"/><Setter Property="FontSize" Value="12"/><Setter Property="Padding" Value="0,0,0,4"/></Style>
+    <Style TargetType="TextBox"><Setter Property="Padding" Value="9,7"/><Setter Property="MinHeight" Value="34"/><Setter Property="Margin" Value="0,0,0,10"/><Setter Property="BorderBrush" Value="{StaticResource Borde}"/></Style>
+    <Style TargetType="ComboBox"><Setter Property="Padding" Value="9,6"/><Setter Property="MinHeight" Value="34"/><Setter Property="Margin" Value="0,0,0,10"/></Style>
+    <Style TargetType="DatePicker"><Setter Property="MinHeight" Value="34"/><Setter Property="Margin" Value="0,0,0,10"/></Style>
+    <Style TargetType="Button"><Setter Property="Background" Value="{StaticResource Primario}"/><Setter Property="Foreground" Value="White"/><Setter Property="BorderThickness" Value="0"/><Setter Property="Padding" Value="14,8"/><Setter Property="MinHeight" Value="36"/><Setter Property="Margin" Value="0"/><Setter Property="Cursor" Value="Hand"/></Style>
+    <Style x:Key="SecondaryButton" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}"><Setter Property="Background" Value="#EAF0F8"/><Setter Property="Foreground" Value="{StaticResource Texto}"/></Style>
+    <Style TargetType="DataGrid"><Setter Property="AutoGenerateColumns" Value="False"/><Setter Property="IsReadOnly" Value="True"/><Setter Property="CanUserAddRows" Value="False"/><Setter Property="RowHeight" Value="34"/><Setter Property="AlternatingRowBackground" Value="#F8FAFC"/><Setter Property="BorderBrush" Value="{StaticResource Borde}"/><Setter Property="BorderThickness" Value="1"/></Style>
+    <Style TargetType="DataGridColumnHeader"><Setter Property="Background" Value="{StaticResource Primario}"/><Setter Property="Foreground" Value="White"/><Setter Property="Padding" Value="10,8"/></Style>
+    <Style TargetType="MenuItem"><Setter Property="Padding" Value="12,7"/><Setter Property="FontSize" Value="13"/></Style>
 </ResourceDictionary>
