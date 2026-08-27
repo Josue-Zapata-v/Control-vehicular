@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:ControlVehicular"
         xmlns:vm="clr-namespace:ControlVehicular.ViewModels"
         mc:Ignorable="d"
-        Title="Control Vehicular" Height="820" Width="1280" MinHeight="720" MinWidth="1080"
+        Title="Control Vehicular" Height="760" Width="1180" MinHeight="680" MinWidth="1000"
         WindowStartupLocation="CenterScreen" FontFamily="Segoe UI" Background="{StaticResource Fondo}">
     <Window.DataContext><vm:MainViewModel/></Window.DataContext>
     <DockPanel>
@@ -34,15 +34,15 @@
             <ScrollViewer VerticalScrollBarVisibility="Auto">
                 <Grid>
                     <Grid.Style><Style TargetType="Grid"><Setter Property="Visibility" Value="Collapsed"/><Style.Triggers><DataTrigger Binding="{Binding SeccionActual}" Value="Ingresos"><Setter Property="Visibility" Value="Visible"/></DataTrigger></Style.Triggers></Style></Grid.Style>
-                    <StackPanel MaxWidth="1180" HorizontalAlignment="Center">
+                    <StackPanel MaxWidth="1100" HorizontalAlignment="Center">
                         <TextBlock Text="Operaciones / Ingresos" Foreground="{StaticResource Primario}" FontWeight="SemiBold" FontSize="13"/>
                         <TextBlock Text="Registro de ingreso vehicular" Style="{StaticResource PageTitle}"/>
                         <TextBlock Text="Complete los datos del vehículo y la carga al momento de su llegada." Foreground="#667085" Margin="0,0,0,24"/>
 
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="1.7*"/>
-                                <ColumnDefinition Width="18"/>
+                                <ColumnDefinition Width="680"/>
+                                <ColumnDefinition Width="20"/>
                                 <ColumnDefinition Width="1*"/>
                             </Grid.ColumnDefinitions>
                             <Border Grid.Column="0" Style="{StaticResource ContentCard}" Padding="24">
@@ -52,10 +52,10 @@
                                     <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
                                     <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
                                     <Label Grid.Column="0" Content="Tipo de documento"/><Label Grid.Column="1" Content="Número de documento *"/>
-                                    <ComboBox Grid.Row="1" Grid.Column="0" Margin="0,0,14,0" ItemsSource="{Binding TiposDocumento}" SelectedItem="{Binding TipoDocumento}"/>
+                                    <ComboBox Grid.Row="1" Grid.Column="0" Margin="0,0,16,0" ItemsSource="{Binding TiposDocumento}" SelectedItem="{Binding TipoDocumento}"/>
                                     <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding NumeroDocumento}"/>
                                     <Label Grid.Row="2" Grid.Column="0" Content="Placa *"/><Label Grid.Row="2" Grid.Column="1" Content="Turno"/>
-                                    <TextBox Grid.Row="3" Grid.Column="0" Margin="0,0,14,0" Text="{Binding Placa}"/>
+                                    <TextBox Grid.Row="3" Grid.Column="0" Margin="0,0,16,0" Text="{Binding Placa}"/>
                                     <ComboBox Grid.Row="3" Grid.Column="1" ItemsSource="{Binding Turnos}" SelectedItem="{Binding Turno}"/>
                                 </Grid>
 
@@ -65,8 +65,8 @@
                                     <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="*"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
                                     <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
                                     <Label Grid.Column="0" Content="Nombre del conductor *"/><Label Grid.Column="1" Content="Nombre del cliente *"/><Label Grid.Column="2" Content="Producto"/>
-                                    <TextBox Grid.Row="1" Grid.Column="0" Margin="0,0,12,0" Text="{Binding NombreConductor}"/>
-                                    <TextBox Grid.Row="1" Grid.Column="1" Margin="0,0,12,0" Text="{Binding NombreCliente}"/>
+                                    <TextBox Grid.Row="1" Grid.Column="0" Margin="0,0,16,0" Text="{Binding NombreConductor}"/>
+                                    <TextBox Grid.Row="1" Grid.Column="1" Margin="0,0,16,0" Text="{Binding NombreCliente}"/>
                                     <TextBox Grid.Row="1" Grid.Column="2" Text="{Binding Producto}"/>
                                 </Grid>
 
@@ -74,8 +74,8 @@
                                     <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="*"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
                                     <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
                                     <Label Grid.Column="0" Content="Fecha y hora"/><Label Grid.Column="1" Content="Peso de ingreso (kg) *"/>
-                                    <Border Grid.Row="1" Grid.Column="0" Background="#F8FAFC" BorderBrush="{StaticResource Borde}" BorderThickness="1" CornerRadius="4" Padding="9,7" Margin="0,0,12,0"><TextBlock Text="{Binding FechaHora, StringFormat={}{0:dd/MM/yyyy HH:mm}}"/></Border>
-                                    <TextBox Grid.Row="1" Grid.Column="1" Margin="0,0,12,0" Text="{Binding PesoIngreso}"/>
+                                    <Border Grid.Row="1" Grid.Column="0" Background="#F8FAFC" BorderBrush="{StaticResource Borde}" BorderThickness="1" CornerRadius="4" Padding="9,7" Margin="0,0,16,0"><TextBlock Text="{Binding FechaHora, StringFormat={}{0:dd/MM/yyyy HH:mm}}"/></Border>
+                                    <TextBox Grid.Row="1" Grid.Column="1" Margin="0,0,16,0" Text="{Binding PesoIngreso}"/>
                                     <Button Grid.Row="1" Grid.Column="2" Content="Registrar ingreso" Command="{Binding RegistrarIngresoCommand}" Margin="0" MinHeight="35" VerticalAlignment="Top"/>
                                 </Grid>
                                 <TextBlock Text="{Binding MensajeIngreso}" FontSize="12" Margin="0,12,0,0">
@@ -115,29 +115,31 @@
                 </Grid>
             </ScrollViewer>
             <Grid>
-                <Grid.Style><Style TargetType="Grid"><Setter Property="Visibility" Value="Collapsed"/><Style.Triggers><DataTrigger Binding="{Binding SeccionActual}" Value="Conductores"><Setter Property="Visibility" Value="Visible"/></DataTrigger></Style.Triggers></Style></Grid.Style>
-                <Grid.ColumnDefinitions><ColumnDefinition Width="350"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
-                <Border Style="{StaticResource ContentCard}" Margin="0,0,18,0"><StackPanel>
+                <Grid.Style><Style TargetType="Grid"><Setter Property="Visibility" Value="Collapsed"/><Setter Property="MaxWidth" Value="1100"/><Setter Property="HorizontalAlignment" Value="Center"/><Style.Triggers><DataTrigger Binding="{Binding SeccionActual}" Value="Conductores"><Setter Property="Visibility" Value="Visible"/></DataTrigger></Style.Triggers></Style></Grid.Style>
+                <Grid.ColumnDefinitions><ColumnDefinition Width="390"/><ColumnDefinition Width="20"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                <Border Grid.Column="0" Style="{StaticResource ContentCard}"><StackPanel>
                     <TextBlock Text="Registrar conductor" Style="{StaticResource PageTitle}"/>
+                    <TextBlock Text="Complete los datos para añadir un conductor a la lista." Foreground="#667085" Margin="0,0,0,20"/>
                     <Label Content="Nombre del conductor *"/><TextBox Text="{Binding NuevoConductor}"/>
                     <Label Content="Licencia *"/><TextBox Text="{Binding Licencia}"/>
                     <Label Content="Transporte *"/><TextBox Text="{Binding Transporte}"/>
                     <Button Content="Guardar conductor" Command="{Binding RegistrarConductorCommand}" Margin="0,8,0,0"/>
                 </StackPanel></Border>
-                <Border Grid.Column="1" Style="{StaticResource ContentCard}"><StackPanel>
+                <Border Grid.Column="2" Style="{StaticResource ContentCard}"><Grid>
+                    <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/></Grid.RowDefinitions>
                     <TextBlock Text="Lista de conductores" Style="{StaticResource PageTitle}"/>
-                    <DataGrid ItemsSource="{Binding Conductores}"><DataGrid.Columns><DataGridTextColumn Header="Nombre conductor" Binding="{Binding Nombre}" Width="*"/><DataGridTextColumn Header="Licencia" Binding="{Binding Licencia}" Width="*"/><DataGridTextColumn Header="Transporte" Binding="{Binding Transporte}" Width="*"/></DataGrid.Columns></DataGrid>
-                </StackPanel></Border>
+                    <DataGrid Grid.Row="1" ItemsSource="{Binding Conductores}"><DataGrid.Columns><DataGridTextColumn Header="Nombre conductor" Binding="{Binding Nombre}" Width="1.3*"/><DataGridTextColumn Header="Licencia" Binding="{Binding Licencia}" Width="*"/><DataGridTextColumn Header="Transporte" Binding="{Binding Transporte}" Width="1.4*"/></DataGrid.Columns></DataGrid>
+                </Grid></Border>
             </Grid>
             <Grid>
-                <Grid.Style><Style TargetType="Grid"><Setter Property="Visibility" Value="Collapsed"/><Style.Triggers><DataTrigger Binding="{Binding SeccionActual}" Value="ReporteIngresos"><Setter Property="Visibility" Value="Visible"/></DataTrigger></Style.Triggers></Style></Grid.Style>
+                <Grid.Style><Style TargetType="Grid"><Setter Property="Visibility" Value="Collapsed"/><Setter Property="MaxWidth" Value="1100"/><Setter Property="HorizontalAlignment" Value="Center"/><Style.Triggers><DataTrigger Binding="{Binding SeccionActual}" Value="ReporteIngresos"><Setter Property="Visibility" Value="Visible"/></DataTrigger></Style.Triggers></Style></Grid.Style>
                 <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/></Grid.RowDefinitions>
                 <Border Style="{StaticResource ContentCard}" Margin="0,0,0,18"><WrapPanel>
-                    <StackPanel Width="160" Margin="0,0,10,0"><Label Content="Fecha inicio"/><DatePicker SelectedDate="{Binding FechaInicio}"/></StackPanel>
-                    <StackPanel Width="160" Margin="0,0,10,0"><Label Content="Fecha fin"/><DatePicker SelectedDate="{Binding FechaFin}"/></StackPanel>
-                    <StackPanel Width="145" Margin="0,0,10,0"><Label Content="Placa"/><TextBox Text="{Binding FiltroPlaca}"/></StackPanel>
-                    <StackPanel Width="180" Margin="0,0,10,0"><Label Content="Nombre conductor"/><TextBox Text="{Binding FiltroConductor}"/></StackPanel>
-                    <StackPanel Width="160" Margin="0,0,10,0"><Label Content="Nombre producto"/><TextBox Text="{Binding FiltroProducto}"/></StackPanel>
+                    <StackPanel Width="160" Margin="0,0,14,0"><Label Content="Fecha inicio"/><DatePicker SelectedDate="{Binding FechaInicio}"/></StackPanel>
+                    <StackPanel Width="160" Margin="0,0,14,0"><Label Content="Fecha fin"/><DatePicker SelectedDate="{Binding FechaFin}"/></StackPanel>
+                    <StackPanel Width="160" Margin="0,0,14,0"><Label Content="Placa"/><TextBox Text="{Binding FiltroPlaca}"/></StackPanel>
+                    <StackPanel Width="160" Margin="0,0,14,0"><Label Content="Nombre conductor"/><TextBox Text="{Binding FiltroConductor}"/></StackPanel>
+                    <StackPanel Width="160" Margin="0,0,14,0"><Label Content="Nombre producto"/><TextBox Text="{Binding FiltroProducto}"/></StackPanel>
                     <StackPanel VerticalAlignment="Bottom" Orientation="Horizontal"><Button Content="Buscar" Command="{Binding BuscarIngresosCommand}"/><Button Style="{StaticResource SecondaryButton}" Content="Limpiar" Command="{Binding LimpiarFiltrosCommand}" Margin="8,0,0,0"/></StackPanel>
                 </WrapPanel></Border>
                 <Border Grid.Row="1" Style="{StaticResource ContentCard}"><StackPanel>
