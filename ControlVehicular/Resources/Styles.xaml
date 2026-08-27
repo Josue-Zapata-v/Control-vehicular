@@ -5,7 +5,8 @@
     <SolidColorBrush x:Key="Superficie" Color="White"/>
     <SolidColorBrush x:Key="Borde" Color="#D6DFEB"/>
     <SolidColorBrush x:Key="Texto" Color="#1D2939"/>
-    <Style TargetType="TextBlock"><Setter Property="Foreground" Value="{StaticResource Texto}"/></Style>
+    <!-- El texto hereda el color del control que lo contiene: blanco en botones y encabezados azules. -->
+    <Style TargetType="Window"><Setter Property="Foreground" Value="{StaticResource Texto}"/></Style>
     <Style TargetType="Label"><Setter Property="Foreground" Value="#475467"/><Setter Property="FontSize" Value="12"/><Setter Property="Padding" Value="0,3"/></Style>
     <Style TargetType="TextBox"><Setter Property="Padding" Value="8,6"/><Setter Property="Margin" Value="0,0,0,8"/><Setter Property="BorderBrush" Value="{StaticResource Borde}"/></Style>
     <Style TargetType="ComboBox"><Setter Property="Padding" Value="8,5"/><Setter Property="Margin" Value="0,0,0,8"/></Style>
