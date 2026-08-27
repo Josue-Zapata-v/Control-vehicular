@@ -64,6 +64,12 @@ public class MainViewModel : ViewModelBase
     private string _mensaje = "Listo para registrar operaciones.";
     public string Mensaje { get => _mensaje; private set => SetProperty(ref _mensaje, value); }
 
+    private string _mensajeIngreso = string.Empty;
+    public string MensajeIngreso { get => _mensajeIngreso; private set => SetProperty(ref _mensajeIngreso, value); }
+
+    private bool _mensajeIngresoEsError;
+    public bool MensajeIngresoEsError { get => _mensajeIngresoEsError; private set => SetProperty(ref _mensajeIngresoEsError, value); }
+
     public ICommand CambiarSeccionCommand { get; }
     public ICommand RegistrarIngresoCommand { get; }
     public ICommand RegistrarConductorCommand { get; }
@@ -88,14 +94,20 @@ public class MainViewModel : ViewModelBase
     {
         if (string.IsNullOrWhiteSpace(NumeroDocumento) || string.IsNullOrWhiteSpace(Placa) || string.IsNullOrWhiteSpace(NombreConductor) || string.IsNullOrWhiteSpace(NombreCliente) || !decimal.TryParse(PesoIngreso, NumberStyles.Number, CultureInfo.CurrentCulture, out var peso) || peso <= 0)
         {
-            Mensaje = "Complete los campos obligatorios y registre un peso válido.";
+            MostrarMensajeIngreso("Complete los campos obligatorios y registre un peso válido.", true);
             return;
         }
 
         var conductor = Conductores.FirstOrDefault(c => c.Nombre.Equals(NombreConductor.Trim(), StringComparison.OrdinalIgnoreCase));
         Ingresos.Add(new Ingreso { FechaHora = FechaHora, TipoDocumento = TipoDocumento, NumeroDocumento = NumeroDocumento.Trim(), Placa = Placa.Trim().ToUpperInvariant(), Turno = Turno, Conductor = NombreConductor.Trim(), Cliente = NombreCliente.Trim(), Producto = Producto.Trim(), Peso = peso, Transporte = conductor?.Transporte ?? "No registrado" });
-        Mensaje = $"Ingreso registrado para la placa {Placa.Trim().ToUpperInvariant()}.";
+        MostrarMensajeIngreso($"Ingreso registrado correctamente: placa {Placa.Trim().ToUpperInvariant()}.", false);
         NumeroDocumento = Placa = NombreConductor = NombreCliente = Producto = PesoIngreso = string.Empty;
+    }
+
+    private void MostrarMensajeIngreso(string mensaje, bool esError)
+    {
+        MensajeIngreso = mensaje;
+        MensajeIngresoEsError = esError;
     }
 
     private void RegistrarConductor()
