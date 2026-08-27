@@ -13,13 +13,19 @@ public class MainViewModel : ViewModelBase
     public ObservableCollection<Ingreso> Ingresos { get; } = new();
     public ICollectionView VistaIngresos { get; }
 
-    public string[] TiposDocumento { get; } = ["Guía de remisión", "Factura", "Boleta"];
+    public string[] TiposDocumento { get; } =
+    [
+        "Guía de Remisión Electrónica - Remitente",
+        "Guía de Remisión Electrónica - Transportista",
+        "Guía de Remisión Electrónica - Por evento",
+        "Orden de carga"
+    ];
     public string[] Turnos { get; } = ["Mañana", "Tarde", "Noche"];
 
     private string _seccionActual = "Ingresos";
     public string SeccionActual { get => _seccionActual; set => SetProperty(ref _seccionActual, value); }
 
-    private string _tipoDocumento = "Guía de remisión";
+    private string _tipoDocumento = "Guía de Remisión Electrónica - Remitente";
     public string TipoDocumento { get => _tipoDocumento; set => SetProperty(ref _tipoDocumento, value); }
     private string _numeroDocumento = string.Empty;
     public string NumeroDocumento { get => _numeroDocumento; set => SetProperty(ref _numeroDocumento, value); }
@@ -75,7 +81,7 @@ public class MainViewModel : ViewModelBase
         LimpiarFiltrosCommand = new RelayCommand(_ => LimpiarFiltros());
 
         Conductores.Add(new Conductor { Nombre = "Carlos Mendoza", Licencia = "Q12345678", Transporte = "Transportes Lima SAC" });
-        Ingresos.Add(new Ingreso { FechaHora = DateTime.Today.AddHours(8), TipoDocumento = "Guía de remisión", NumeroDocumento = "GR-001", Placa = "ABC-123", Turno = "Mañana", Conductor = "Carlos Mendoza", Cliente = "Comercial Andina", Producto = "Cemento", Peso = 12500, Transporte = "Transportes Lima SAC" });
+        Ingresos.Add(new Ingreso { FechaHora = DateTime.Today.AddHours(8), TipoDocumento = "Guía de Remisión Electrónica - Remitente", NumeroDocumento = "GR-001", Placa = "ABC-123", Turno = "Mañana", Conductor = "Carlos Mendoza", Cliente = "Comercial Andina", Producto = "Cemento", Peso = 12500, Transporte = "Transportes Lima SAC" });
     }
 
     private void RegistrarIngreso()
