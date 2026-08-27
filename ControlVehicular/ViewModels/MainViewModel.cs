@@ -11,6 +11,7 @@ public class MainViewModel : ViewModelBase
 {
     public ObservableCollection<Conductor> Conductores { get; } = new();
     public ObservableCollection<Ingreso> Ingresos { get; } = new();
+    public ObservableCollection<Ingreso> UltimosIngresos { get; } = new();
     public ICollectionView VistaIngresos { get; }
 
     public string[] TiposDocumento { get; } =
@@ -87,7 +88,7 @@ public class MainViewModel : ViewModelBase
         LimpiarFiltrosCommand = new RelayCommand(_ => LimpiarFiltros());
 
         Conductores.Add(new Conductor { Nombre = "Carlos Mendoza", Licencia = "Q12345678", Transporte = "Transportes Lima SAC" });
-        Ingresos.Add(new Ingreso { FechaHora = DateTime.Today.AddHours(8), TipoDocumento = "Guía de Remisión Electrónica - Remitente", NumeroDocumento = "GR-001", Placa = "ABC-123", Turno = "Mañana", Conductor = "Carlos Mendoza", Cliente = "Comercial Andina", Producto = "Cemento", Peso = 12500, Transporte = "Transportes Lima SAC" });
+        AgregarIngreso(new Ingreso { FechaHora = DateTime.Today.AddHours(8), TipoDocumento = "Guía de Remisión Electrónica - Remitente", NumeroDocumento = "GR-001", Placa = "ABC-123", Turno = "Mañana", Conductor = "Carlos Mendoza", Cliente = "Comercial Andina", Producto = "Cemento", Peso = 12500, Transporte = "Transportes Lima SAC" });
     }
 
     private void RegistrarIngreso()
@@ -99,7 +100,7 @@ public class MainViewModel : ViewModelBase
         }
 
         var conductor = Conductores.FirstOrDefault(c => c.Nombre.Equals(NombreConductor.Trim(), StringComparison.OrdinalIgnoreCase));
-        Ingresos.Add(new Ingreso { FechaHora = FechaHora, TipoDocumento = TipoDocumento, NumeroDocumento = NumeroDocumento.Trim(), Placa = Placa.Trim().ToUpperInvariant(), Turno = Turno, Conductor = NombreConductor.Trim(), Cliente = NombreCliente.Trim(), Producto = Producto.Trim(), Peso = peso, Transporte = conductor?.Transporte ?? "No registrado" });
+        AgregarIngreso(new Ingreso { FechaHora = FechaHora, TipoDocumento = TipoDocumento, NumeroDocumento = NumeroDocumento.Trim(), Placa = Placa.Trim().ToUpperInvariant(), Turno = Turno, Conductor = NombreConductor.Trim(), Cliente = NombreCliente.Trim(), Producto = Producto.Trim(), Peso = peso, Transporte = conductor?.Transporte ?? "No registrado" });
         MostrarMensajeIngreso($"Ingreso registrado correctamente: placa {Placa.Trim().ToUpperInvariant()}.", false);
         NumeroDocumento = Placa = NombreConductor = NombreCliente = Producto = PesoIngreso = string.Empty;
     }
@@ -108,6 +109,13 @@ public class MainViewModel : ViewModelBase
     {
         MensajeIngreso = mensaje;
         MensajeIngresoEsError = esError;
+    }
+
+    private void AgregarIngreso(Ingreso ingreso)
+    {
+        Ingresos.Add(ingreso);
+        UltimosIngresos.Insert(0, ingreso);
+        if (UltimosIngresos.Count > 5) UltimosIngresos.RemoveAt(UltimosIngresos.Count - 1);
     }
 
     private void RegistrarConductor()

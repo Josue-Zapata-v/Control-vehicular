@@ -96,10 +96,10 @@
                                 <Grid>
                                     <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/></Grid.RowDefinitions>
                                     <StackPanel Grid.Row="0" Margin="0,0,0,14">
-                                        <TextBlock Text="Ingresos registrados" FontSize="18" FontWeight="SemiBold" Foreground="{StaticResource Primario}"/>
-                                        <TextBlock Text="Se actualiza al registrar un ingreso" Foreground="#667085" FontSize="12" Margin="0,3,0,0"/>
+                                        <TextBlock Text="Últimos ingresos" FontSize="18" FontWeight="SemiBold" Foreground="{StaticResource Primario}"/>
+                                        <TextBlock Text="Se muestran los 5 registros más recientes." Foreground="#667085" FontSize="12" Margin="0,3,0,0"/>
                                     </StackPanel>
-                                    <DataGrid Grid.Row="1" ItemsSource="{Binding Ingresos}" HeadersVisibility="Column">
+                                    <DataGrid Grid.Row="1" ItemsSource="{Binding UltimosIngresos}" HeadersVisibility="Column">
                                         <DataGrid.Columns>
                                             <DataGridTextColumn Header="Hora" Binding="{Binding FechaHora, StringFormat={}{0:HH:mm}}" Width="58"/>
                                             <DataGridTextColumn Header="Placa" Binding="{Binding Placa}" Width="*"/>
